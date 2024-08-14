@@ -1,7 +1,7 @@
 # Project Gauri
 
 ## Overview
-Project Gauri is a [brief description of the project]. This project is built using the Flutter framework, providing [details about the app's functionality, target platform, etc.].
+Project Gauri is a cow and cattle wellness and wellfare app. This project is built using the Flutter framework and uses GetX for it's state management.
 
 ## Getting Started
 
