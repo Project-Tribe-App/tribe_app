@@ -1,7 +1,9 @@
+// Dart imports:
 import 'dart:convert';
+
+// Package imports:
 import 'package:http/http.dart' as http;
 import 'package:logger/logger.dart';
-
 
 class BaseApiService {
   final Logger logger = Logger();

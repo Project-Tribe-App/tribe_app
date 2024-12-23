@@ -1,15 +1,20 @@
+// Flutter imports:
 import 'package:flutter/material.dart';
+
+// Package imports:
+import 'package:csc_picker/csc_picker.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+
+// Project imports:
 import 'package:project_tribe/core/tribe_color.dart';
-import 'package:csc_picker/csc_picker.dart';
 import 'package:project_tribe/features/onboarding/modules/controller/registeration_controller.dart';
 
 class RegisterPlane extends StatelessWidget {
-  RegisterPlane({required this.controller, super.key});
+  const RegisterPlane({required this.controller, required this.formKey, super.key});
 
   final RegisterationController controller;
-  final GlobalKey<FormState> formKey = GlobalKey<FormState>();
+  final GlobalKey<FormState> formKey;
 
   @override
   Widget build(BuildContext context) {
@@ -57,8 +62,7 @@ class RegisterPlane extends StatelessWidget {
                               color: TribeColor.white,
                               fontSize: 15.sp, // Matches hint text style
                             ),
-                            cursorHeight:
-                                20.h, // Adjust cursor height if necessary
+                            cursorHeight: 20.h, // Adjust cursor height if necessary
                             decoration: InputDecoration(
                               hintText: 'Name',
                               hintStyle: TextStyle(
@@ -68,12 +72,10 @@ class RegisterPlane extends StatelessWidget {
                               border: InputBorder.none,
                               isDense: true, // Reduces vertical padding
                               contentPadding: EdgeInsets.symmetric(
-                                vertical: 10
-                                    .h, // Ensures hint text and cursor alignment
+                                vertical: 10.h, // Ensures hint text and cursor alignment
                               ),
                               icon: Padding(
-                                padding:
-                                    EdgeInsets.only(left: 5.w), // Adds spacing
+                                padding: EdgeInsets.only(left: 5.w), // Adds spacing
                                 child: Icon(
                                   Icons.person,
                                   color: TribeColor.white,
@@ -105,8 +107,7 @@ class RegisterPlane extends StatelessWidget {
                               color: TribeColor.white,
                               fontSize: 15.sp, // Matches hint text style
                             ),
-                            cursorHeight:
-                                20.h, // Adjust cursor height if necessary
+                            cursorHeight: 20.h, // Adjust cursor height if necessary
                             decoration: InputDecoration(
                               hintText: 'Username',
                               hintStyle: TextStyle(
@@ -116,12 +117,10 @@ class RegisterPlane extends StatelessWidget {
                               border: InputBorder.none,
                               isDense: true, // Reduces vertical padding
                               contentPadding: EdgeInsets.symmetric(
-                                vertical: 10
-                                    .h, // Ensures hint text and cursor alignment
+                                vertical: 10.h, // Ensures hint text and cursor alignment
                               ),
                               icon: Padding(
-                                padding:
-                                    EdgeInsets.only(left: 5.w), // Adds spacing
+                                padding: EdgeInsets.only(left: 5.w), // Adds spacing
                                 child: Icon(
                                   Icons.account_box,
                                   color: TribeColor.white,
@@ -190,8 +189,7 @@ class RegisterPlane extends StatelessWidget {
                               color: TribeColor.white,
                               fontSize: 15.sp, // Matches hint text style
                             ),
-                            cursorHeight:
-                                20.h, // Adjust cursor height if necessary
+                            cursorHeight: 20.h, // Adjust cursor height if necessary
                             decoration: InputDecoration(
                               hintText: 'Email',
                               hintStyle: TextStyle(
@@ -204,8 +202,7 @@ class RegisterPlane extends StatelessWidget {
                                 vertical: 10.h, // Ensures hint text and cursor alignment
                               ),
                               icon: Padding(
-                                padding:
-                                    EdgeInsets.only(left: 5.w), // Adds spacing
+                                padding: EdgeInsets.only(left: 5.w), // Adds spacing
                                 child: Icon(
                                   Icons.email_rounded,
                                   color: TribeColor.white,
@@ -238,8 +235,7 @@ class RegisterPlane extends StatelessWidget {
                               color: TribeColor.white,
                               fontSize: 15.sp, // Matches hint text style
                             ),
-                            cursorHeight:
-                                20.h, // Adjust cursor height if necessary
+                            cursorHeight: 20.h, // Adjust cursor height if necessary
                             decoration: InputDecoration(
                               hintText: 'Phone number',
                               hintStyle: TextStyle(
@@ -249,12 +245,10 @@ class RegisterPlane extends StatelessWidget {
                               border: InputBorder.none,
                               isDense: true, // Reduces vertical padding
                               contentPadding: EdgeInsets.symmetric(
-                                vertical: 10
-                                    .h, // Ensures hint text and cursor alignment
+                                vertical: 10.h, // Ensures hint text and cursor alignment
                               ),
                               icon: Padding(
-                                padding:
-                                    EdgeInsets.only(left: 5.w), // Adds spacing
+                                padding: EdgeInsets.only(left: 5.w), // Adds spacing
                                 child: Icon(
                                   Icons.phone,
                                   color: TribeColor.white,
@@ -339,8 +333,7 @@ class RegisterPlane extends StatelessWidget {
                             ),
                             dropdownDecoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(10.w),
-                              border: Border.all(
-                                  color: TribeColor.primaryColor, width: 1.5.w),
+                              border: Border.all(color: TribeColor.primaryColor, width: 1.5.w),
                             ),
                             dropdownDialogRadius: 10,
                             searchBarRadius: 10,
@@ -389,12 +382,9 @@ class RegisterPlane extends StatelessWidget {
                               child: IconButton(
                                 color: Colors.white,
                                 onPressed: () {
-                                  if (controller
-                                          .selectedCountry.value.isNotEmpty &&
-                                      controller
-                                          .selectedCity.value.isNotEmpty &&
-                                      controller
-                                          .selectedState.value.isNotEmpty) {
+                                  if (controller.selectedCountry.value.isNotEmpty &&
+                                      controller.selectedCity.value.isNotEmpty &&
+                                      controller.selectedState.value.isNotEmpty) {
                                     controller.changeIndex(3);
                                   }
                                 },
@@ -435,8 +425,7 @@ class RegisterPlane extends StatelessWidget {
                               fontSize: 14.sp, // Matches hint text style
                             ),
                             obscureText: !controller.isPasswordVisible.value,
-                            cursorHeight:
-                                20.h, // Adjust cursor height if necessary
+                            cursorHeight: 20.h, // Adjust cursor height if necessary
                             decoration: InputDecoration(
                               hintText: 'Set Password',
                               hintStyle: TextStyle(
@@ -446,12 +435,10 @@ class RegisterPlane extends StatelessWidget {
                               border: InputBorder.none,
                               isDense: true, // Reduces vertical padding
                               contentPadding: EdgeInsets.symmetric(
-                                vertical: 10
-                                    .h, // Ensures hint text and cursor alignment
+                                vertical: 10.h, // Ensures hint text and cursor alignment
                               ),
                               icon: Padding(
-                                padding:
-                                    EdgeInsets.only(left: 5.w), // Adds spacing
+                                padding: EdgeInsets.only(left: 5.w), // Adds spacing
                                 child: Icon(
                                   Icons.password_sharp,
                                   color: TribeColor.white,
@@ -460,9 +447,7 @@ class RegisterPlane extends StatelessWidget {
                               ),
                               suffixIcon: IconButton(
                                 icon: Icon(
-                                  controller.isPasswordVisible.value
-                                      ? Icons.visibility
-                                      : Icons.visibility_off,
+                                  controller.isPasswordVisible.value ? Icons.visibility : Icons.visibility_off,
                                   size: 18.sp,
                                 ),
                                 onPressed: () {
@@ -497,8 +482,7 @@ class RegisterPlane extends StatelessWidget {
                               color: TribeColor.white,
                               fontSize: 15.sp, // Matches hint text style
                             ),
-                            cursorHeight:
-                                20.h, // Adjust cursor height if necessary
+                            cursorHeight: 20.h, // Adjust cursor height if necessary
                             decoration: InputDecoration(
                               hintText: 'Confirm Password',
                               hintStyle: TextStyle(
@@ -508,12 +492,10 @@ class RegisterPlane extends StatelessWidget {
                               border: InputBorder.none,
                               isDense: true, // Reduces vertical padding
                               contentPadding: EdgeInsets.symmetric(
-                                vertical: 10
-                                    .h, // Ensures hint text and cursor alignment
+                                vertical: 10.h, // Ensures hint text and cursor alignment
                               ),
                               icon: Padding(
-                                padding:
-                                    EdgeInsets.only(left: 5.w), // Adds spacing
+                                padding: EdgeInsets.only(left: 5.w), // Adds spacing
                                 child: Icon(
                                   Icons.security_sharp,
                                   color: TribeColor.white,
@@ -522,9 +504,7 @@ class RegisterPlane extends StatelessWidget {
                               ),
                               suffixIcon: IconButton(
                                 icon: Icon(
-                                  controller.isPasswordVisible.value
-                                      ? Icons.visibility
-                                      : Icons.visibility_off,
+                                  controller.isPasswordVisible.value ? Icons.visibility : Icons.visibility_off,
                                   size: 18.sp,
                                 ),
                                 onPressed: () {
@@ -564,22 +544,6 @@ class RegisterPlane extends StatelessWidget {
                               ),
                             ),
                             const Spacer(),
-                            CircleAvatar(
-                              radius: 20.w,
-                              backgroundColor:
-                                  // ignore: deprecated_member_use
-                                  TribeColor.primaryColor.withOpacity(0.5),
-                              child: IconButton(
-                                color: Colors.white,
-                                onPressed: () {
-                                  controller.changeIndex(0);
-                                },
-                                icon: Icon(
-                                  Icons.chevron_right_rounded,
-                                  size: 25.w,
-                                ),
-                              ),
-                            ),
                             SizedBox(width: 10.w), // Spacing
                           ],
                         ),

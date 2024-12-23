@@ -43,6 +43,9 @@ dependencies:
   get: ^4.6.6
   logger: ^2.5.0
   http: ^1.2.2
+  shimmer: ^3.0.0
+  toastification: ^2.3.0
+  import_sorter: ^4.6.0
 
 dev_dependencies:
   flutter_test:

@@ -1,0 +1,44 @@
+repos:
+  - repo: local
+    hooks:
+      - id: git-stash
+        name: Saving unindexed files (to avoid formatting and analyze)
+        entry: git
+        args: ["stash", "--keep-index", "--include-untracked", "--message=pre-commit-auto-stash"]
+        language: system
+        pass_filenames: false
+
+      - id: dart-fix
+        name: Fixing dart code
+        entry: dart
+        args: ["fix","--apply"]
+        language: system
+        pass_filenames: false
+
+      - id: flutter-format
+        name: Formatting code
+        entry: dart
+        args: ["format",".", "-l", "120"]
+        language: system
+        pass_filenames: false
+
+      - id: organise-imports
+        name: Organising imports
+        entry: flutter
+        args: ["pub", "run", "import_sorter:main"]
+        language: system
+        pass_filenames: false
+
+      - id: flutter-analyze
+        name: flutter analyze
+        entry: flutter
+        args: ["analyze"]
+        language: system
+        pass_filenames: false
+
+      - id: git-stash-apply
+        name: Applying stashed changes
+        entry: git
+        args: ["stash", "pop", "-q"]
+        language: system
+        pass_filenames: false

@@ -1,7 +1,8 @@
-
+// Package imports:
 import 'package:get/get.dart';
-import 'package:project_tribe/features/onboarding/modules/controller/registeration_controller.dart';
 
+// Project imports:
+import 'package:project_tribe/features/onboarding/modules/controller/registeration_controller.dart';
 
 class RegisterationBinding extends Bindings {
   @override

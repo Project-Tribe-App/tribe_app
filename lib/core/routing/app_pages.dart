@@ -1,4 +1,7 @@
+// Package imports:
 import 'package:get/get.dart';
+
+// Project imports:
 import 'package:project_tribe/core/routing/routes.dart';
 import 'package:project_tribe/features/onboarding/modules/binding/registeration_binding.dart';
 import 'package:project_tribe/features/onboarding/presentation/screens/register.dart';
