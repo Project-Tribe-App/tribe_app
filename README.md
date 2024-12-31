@@ -1,4 +1,4 @@
-# Project Gauri
+# Project Tribe
 
 ## Overview
 This project is built using the Flutter framework and uses GetX for it's state management.
