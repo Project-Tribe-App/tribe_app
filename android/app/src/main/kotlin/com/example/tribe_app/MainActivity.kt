@@ -1,4 +1,4 @@
-package com.example.project_gauri
+package com.example.tribe_app
 
 import io.flutter.embedding.android.FlutterActivity
 
