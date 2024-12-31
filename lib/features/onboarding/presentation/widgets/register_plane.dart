@@ -8,18 +8,26 @@ import 'package:get/get.dart';
 
 // Project imports:
 import 'package:project_tribe/core/tribe_color.dart';
+import 'package:project_tribe/core/utils/utility.dart';
 import 'package:project_tribe/features/onboarding/modules/controller/registeration_controller.dart';
 
-class RegisterPlane extends StatelessWidget {
+class RegisterPlane extends StatefulWidget {
   const RegisterPlane({required this.controller, required this.formKey, super.key});
 
   final RegisterationController controller;
   final GlobalKey<FormState> formKey;
 
   @override
+  State<RegisterPlane> createState() => _RegisterPlaneState();
+}
+
+class _RegisterPlaneState extends State<RegisterPlane> {
+  bool _passwordFieldTouched = false;
+  bool _confirmPasswordFieldTouched = false;
+  @override
   Widget build(BuildContext context) {
     return Form(
-      key: formKey,
+      key: widget.formKey,
       child: Container(
           width: 0.8.sw,
           height: 0.3.sh,
@@ -41,7 +49,7 @@ class RegisterPlane extends StatelessWidget {
             return Column(
               children: [
                 Visibility(
-                  visible: controller.currentIndex.value == 0,
+                  visible: widget.controller.currentIndex.value == 0,
                   child: Expanded(
                     child: Column(
                       children: [
@@ -56,7 +64,7 @@ class RegisterPlane extends StatelessWidget {
                             borderRadius: BorderRadius.circular(20.r),
                           ),
                           child: TextFormField(
-                            controller: controller.nameController,
+                            controller: widget.controller.nameController,
                             keyboardType: TextInputType.name,
                             style: TextStyle(
                               color: TribeColor.white,
@@ -68,6 +76,10 @@ class RegisterPlane extends StatelessWidget {
                               hintStyle: TextStyle(
                                 color: TribeColor.white,
                                 fontSize: 14.sp,
+                              ),
+                              errorStyle: TextStyle(
+                                color: TribeColor.white,
+                                fontSize: 10.sp,
                               ),
                               border: InputBorder.none,
                               isDense: true, // Reduces vertical padding
@@ -84,8 +96,11 @@ class RegisterPlane extends StatelessWidget {
                               ),
                             ),
                             validator: (value) {
-                              if (value!.isEmpty) {
-                                return 'Name cannot be empty';
+                              if (value == null || value.isEmpty) {
+                                return 'Name is required.';
+                              }
+                              if (value.length > 100) {
+                                return 'Name is too long.';
                               }
                               return null;
                             },
@@ -102,7 +117,7 @@ class RegisterPlane extends StatelessWidget {
                             borderRadius: BorderRadius.circular(20.r),
                           ),
                           child: TextFormField(
-                            controller: controller.userNameController,
+                            controller: widget.controller.userNameController,
                             style: TextStyle(
                               color: TribeColor.white,
                               fontSize: 15.sp, // Matches hint text style
@@ -113,6 +128,10 @@ class RegisterPlane extends StatelessWidget {
                               hintStyle: TextStyle(
                                 color: TribeColor.white,
                                 fontSize: 14.sp,
+                              ),
+                              errorStyle: TextStyle(
+                                color: TribeColor.white,
+                                fontSize: 10.sp,
                               ),
                               border: InputBorder.none,
                               isDense: true, // Reduces vertical padding
@@ -130,7 +149,7 @@ class RegisterPlane extends StatelessWidget {
                             ),
                             validator: (value) {
                               if (value!.isEmpty) {
-                                return 'User name cannot be empty';
+                                return 'User name is required.';
                               }
                               return null;
                             },
@@ -149,8 +168,8 @@ class RegisterPlane extends StatelessWidget {
                               child: IconButton(
                                 color: Colors.white,
                                 onPressed: () {
-                                  if (formKey.currentState!.validate()) {
-                                    controller.changeIndex(1);
+                                  if (widget.formKey.currentState!.validate()) {
+                                    widget.controller.changeIndex(1);
                                   }
                                 },
                                 icon: Icon(
@@ -168,7 +187,7 @@ class RegisterPlane extends StatelessWidget {
                   ),
                 ),
                 Visibility(
-                  visible: controller.currentIndex.value == 1,
+                  visible: widget.controller.currentIndex.value == 1,
                   child: Expanded(
                     child: Column(
                       children: [
@@ -183,7 +202,7 @@ class RegisterPlane extends StatelessWidget {
                             borderRadius: BorderRadius.circular(20.r),
                           ),
                           child: TextFormField(
-                            controller: controller.emailController,
+                            controller: widget.controller.emailController,
                             keyboardType: TextInputType.emailAddress,
                             style: TextStyle(
                               color: TribeColor.white,
@@ -195,6 +214,10 @@ class RegisterPlane extends StatelessWidget {
                               hintStyle: TextStyle(
                                 color: TribeColor.white,
                                 fontSize: 14.sp,
+                              ),
+                              errorStyle: TextStyle(
+                                color: TribeColor.white,
+                                fontSize: 10.sp,
                               ),
                               border: InputBorder.none,
                               isDense: true, // Reduces vertical padding
@@ -211,8 +234,12 @@ class RegisterPlane extends StatelessWidget {
                               ),
                             ),
                             validator: (value) {
-                              if (value!.isEmpty) {
-                                return 'Email cannot be empty';
+                              if (value == null || value.isEmpty) {
+                                return 'Email is required.';
+                              }
+                              final emailRegex = RegExp(r'^[^@]+@[^@]+\.[^@]+');
+                              if (!emailRegex.hasMatch(value)) {
+                                return 'Invalid email address.';
                               }
                               return null;
                             },
@@ -229,7 +256,7 @@ class RegisterPlane extends StatelessWidget {
                             borderRadius: BorderRadius.circular(20.r),
                           ),
                           child: TextFormField(
-                            controller: controller.phoneController,
+                            controller: widget.controller.phoneController,
                             keyboardType: TextInputType.phone,
                             style: TextStyle(
                               color: TribeColor.white,
@@ -241,6 +268,10 @@ class RegisterPlane extends StatelessWidget {
                               hintStyle: TextStyle(
                                 color: TribeColor.white,
                                 fontSize: 14.sp,
+                              ),
+                              errorStyle: TextStyle(
+                                color: TribeColor.white,
+                                fontSize: 10.sp,
                               ),
                               border: InputBorder.none,
                               isDense: true, // Reduces vertical padding
@@ -257,8 +288,12 @@ class RegisterPlane extends StatelessWidget {
                               ),
                             ),
                             validator: (value) {
-                              if (value!.isEmpty) {
-                                return 'Phone number cannot be empty';
+                              if (value == null || value.isEmpty) {
+                                return 'Phone number is required.';
+                              }
+                              final phoneRegex = RegExp(r'^\d{10}$');
+                              if (!phoneRegex.hasMatch(value)) {
+                                return 'Invalid phone number.';
                               }
                               return null;
                             },
@@ -278,7 +313,7 @@ class RegisterPlane extends StatelessWidget {
                               child: IconButton(
                                 color: Colors.white,
                                 onPressed: () {
-                                  controller.changeIndex(0);
+                                  widget.controller.changeIndex(0);
                                 },
                                 icon: Icon(
                                   Icons.chevron_left_rounded,
@@ -295,8 +330,8 @@ class RegisterPlane extends StatelessWidget {
                               child: IconButton(
                                 color: Colors.white,
                                 onPressed: () {
-                                  if (formKey.currentState!.validate()) {
-                                    controller.changeIndex(2);
+                                  if (widget.formKey.currentState!.validate()) {
+                                    widget.controller.changeIndex(2);
                                   }
                                 },
                                 icon: Icon(
@@ -314,7 +349,7 @@ class RegisterPlane extends StatelessWidget {
                   ),
                 ),
                 Visibility(
-                  visible: controller.currentIndex.value == 2,
+                  visible: widget.controller.currentIndex.value == 2,
                   child: Expanded(
                     child: Column(
                       children: [
@@ -339,16 +374,16 @@ class RegisterPlane extends StatelessWidget {
                             searchBarRadius: 10,
                             defaultCountry: CscCountry.India,
                             onCountryChanged: (value) {
-                              controller.selectedCountry.value = value;
-                              controller.update();
+                              widget.controller.selectedCountry.value = value;
+                              widget.controller.update();
                             },
                             onStateChanged: (value) {
-                              controller.selectedState.value = value ?? '';
-                              controller.update();
+                              widget.controller.selectedState.value = value ?? '';
+                              widget.controller.update();
                             },
                             onCityChanged: (value) {
-                              controller.selectedCity.value = value ?? '';
-                              controller.update();
+                              widget.controller.selectedCity.value = value ?? '';
+                              widget.controller.update();
                             },
                           ),
                         ),
@@ -365,7 +400,7 @@ class RegisterPlane extends StatelessWidget {
                               child: IconButton(
                                 color: Colors.white,
                                 onPressed: () {
-                                  controller.changeIndex(1);
+                                  widget.controller.changeIndex(1);
                                 },
                                 icon: Icon(
                                   Icons.chevron_left_rounded,
@@ -382,10 +417,12 @@ class RegisterPlane extends StatelessWidget {
                               child: IconButton(
                                 color: Colors.white,
                                 onPressed: () {
-                                  if (controller.selectedCountry.value.isNotEmpty &&
-                                      controller.selectedCity.value.isNotEmpty &&
-                                      controller.selectedState.value.isNotEmpty) {
-                                    controller.changeIndex(3);
+                                  if (widget.controller.selectedCountry.value.isNotEmpty &&
+                                      widget.controller.selectedCity.value.isNotEmpty &&
+                                      widget.controller.selectedState.value.isNotEmpty) {
+                                    widget.controller.changeIndex(3);
+                                  } else {
+                                    Utility.showErrorToast(context: context, title: "Please select all fields");
                                   }
                                 },
                                 icon: Icon(
@@ -403,7 +440,7 @@ class RegisterPlane extends StatelessWidget {
                   ),
                 ),
                 Visibility(
-                  visible: controller.currentIndex.value == 3,
+                  visible: widget.controller.currentIndex.value == 3,
                   child: Expanded(
                     child: Column(
                       children: [
@@ -418,21 +455,31 @@ class RegisterPlane extends StatelessWidget {
                             borderRadius: BorderRadius.circular(20.r),
                           ),
                           child: TextFormField(
-                            controller: controller.passwordController,
+                            controller: widget.controller.passwordController,
                             keyboardType: TextInputType.visiblePassword,
                             style: TextStyle(
                               color: TribeColor.white,
                               fontSize: 14.sp, // Matches hint text style
                             ),
-                            obscureText: !controller.isPasswordVisible.value,
+                            obscureText: !widget.controller.isPasswordVisible.value,
                             cursorHeight: 20.h, // Adjust cursor height if necessary
+                            onChanged: (value) {
+                              setState(() {
+                                _passwordFieldTouched = true;
+                              });
+                            },
                             decoration: InputDecoration(
                               hintText: 'Set Password',
+                              errorStyle: TextStyle(
+                                color: TribeColor.white,
+                                fontSize: 10.sp,
+                              ),
                               hintStyle: TextStyle(
                                 color: TribeColor.white,
                                 fontSize: 14.sp,
                               ),
                               border: InputBorder.none,
+                              errorText: _passwordFieldTouched ? _validatePasswordErrorText() : null,
                               isDense: true, // Reduces vertical padding
                               contentPadding: EdgeInsets.symmetric(
                                 vertical: 10.h, // Ensures hint text and cursor alignment
@@ -447,20 +494,14 @@ class RegisterPlane extends StatelessWidget {
                               ),
                               suffixIcon: IconButton(
                                 icon: Icon(
-                                  controller.isPasswordVisible.value ? Icons.visibility : Icons.visibility_off,
+                                  widget.controller.isPasswordVisible.value ? Icons.visibility : Icons.visibility_off,
                                   size: 18.sp,
                                 ),
                                 onPressed: () {
-                                  controller.togglePasswordVisibility();
+                                  widget.controller.togglePasswordVisibility();
                                 },
                               ),
                             ),
-                            validator: (value) {
-                              if (value!.isEmpty) {
-                                return 'Password cannot be empty';
-                              }
-                              return null;
-                            },
                           ),
                         ),
 
@@ -475,21 +516,31 @@ class RegisterPlane extends StatelessWidget {
                             borderRadius: BorderRadius.circular(20.r),
                           ),
                           child: TextFormField(
-                            controller: controller.confirmPasswordController,
+                            controller: widget.controller.confirmPasswordController,
                             keyboardType: TextInputType.visiblePassword,
-                            obscureText: !controller.isPasswordVisible.value,
+                            obscureText: !widget.controller.isPasswordVisible.value,
                             style: TextStyle(
                               color: TribeColor.white,
                               fontSize: 15.sp, // Matches hint text style
                             ),
                             cursorHeight: 20.h, // Adjust cursor height if necessary
+                            onChanged: (value) {
+                              setState(() {
+                                _confirmPasswordFieldTouched = true;
+                              });
+                            },
                             decoration: InputDecoration(
                               hintText: 'Confirm Password',
                               hintStyle: TextStyle(
                                 color: TribeColor.white,
                                 fontSize: 14.sp,
                               ),
+                              errorStyle: TextStyle(
+                                color: TribeColor.white,
+                                fontSize: 10.sp,
+                              ),
                               border: InputBorder.none,
+                              errorText: _confirmPasswordFieldTouched ? _validateConfirmPasswordErrorText() : null,
                               isDense: true, // Reduces vertical padding
                               contentPadding: EdgeInsets.symmetric(
                                 vertical: 10.h, // Ensures hint text and cursor alignment
@@ -504,20 +555,14 @@ class RegisterPlane extends StatelessWidget {
                               ),
                               suffixIcon: IconButton(
                                 icon: Icon(
-                                  controller.isPasswordVisible.value ? Icons.visibility : Icons.visibility_off,
+                                  widget.controller.isPasswordVisible.value ? Icons.visibility : Icons.visibility_off,
                                   size: 18.sp,
                                 ),
                                 onPressed: () {
-                                  controller.togglePasswordVisibility();
+                                  widget.controller.togglePasswordVisibility();
                                 },
                               ),
                             ),
-                            validator: (value) {
-                              if (value!.isEmpty) {
-                                return 'Password cannot be empty';
-                              }
-                              return null;
-                            },
                           ),
                         ),
 
@@ -535,7 +580,7 @@ class RegisterPlane extends StatelessWidget {
                               child: IconButton(
                                 color: Colors.white,
                                 onPressed: () {
-                                  controller.changeIndex(2);
+                                  widget.controller.changeIndex(2);
                                 },
                                 icon: Icon(
                                   Icons.chevron_left_rounded,
@@ -556,5 +601,64 @@ class RegisterPlane extends StatelessWidget {
             );
           })),
     );
+  }
+
+  String? _validatePasswordErrorText() {
+    final password = widget.controller.passwordController.text;
+
+    if (password.isEmpty) {
+      return 'Password is required.';
+    }
+    if (password.length < 8) {
+      return 'Password must be at least 8 characters long.';
+    }
+    if (password.contains(' ')) {
+      return 'Password cannot contain whitespace.';
+    }
+    if (!_containsUppercase(password)) {
+      return 'Password must contain at least one uppercase letter.';
+    }
+    if (!_containsLowercase(password)) {
+      return 'Password must contain at least one lowercase letter.';
+    }
+    if (!_containsDigit(password)) {
+      return 'Password must contain at least one digit.';
+    }
+    if (!_containsSpecialCharacter(password)) {
+      return 'Password must contain at least one special character.';
+    }
+    return null;
+  }
+
+  String? _validateConfirmPasswordErrorText() {
+    final confirmPassword = widget.controller.confirmPasswordController.text;
+    final password = widget.controller.passwordController.text;
+
+    if (confirmPassword.isEmpty) {
+      return 'Confirm password is required.';
+    }
+    if (confirmPassword.contains(' ')) {
+      return 'Confirm password cannot contain whitespace.';
+    }
+    if (confirmPassword != password) {
+      return 'Passwords do not match.';
+    }
+    return null;
+  }
+
+  bool _containsUppercase(String value) {
+    return value.contains(RegExp('[A-Z]'));
+  }
+
+  bool _containsLowercase(String value) {
+    return value.contains(RegExp('[a-z]'));
+  }
+
+  bool _containsDigit(String value) {
+    return value.contains(RegExp('[0-9]'));
+  }
+
+  bool _containsSpecialCharacter(String value) {
+    return value.contains(RegExp(r'[!@#$%^&*(),.?":{}|<>]'));
   }
 }

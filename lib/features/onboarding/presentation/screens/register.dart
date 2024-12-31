@@ -93,7 +93,7 @@ class Register extends StatelessWidget {
                       padding: EdgeInsets.only(top: 20.h),
                       child: ElevatedButton(
                         onPressed: () async {
-                          if (formKey.currentState!.validate()) {
+                          if (validatePassword() && validatePasswords()) {
                             await controller.registerUser();
                           }
                         },
@@ -141,5 +141,66 @@ class Register extends StatelessWidget {
             )),
       ),
     ));
+  }
+
+  bool validatePasswords() {
+    final password = controller.passwordController.text;
+    final confirmPassword = controller.confirmPasswordController.text;
+
+    if (password.isEmpty || confirmPassword.isEmpty) {
+      return false;
+    }
+
+    if (password != confirmPassword) {
+      return false;
+    }
+
+    return true;
+  }
+
+  bool validatePassword() {
+    final password = controller.passwordController.text;
+
+    if (password.length < 8) {
+      return false;
+    }
+
+    if (password.contains(' ')) {
+      return false;
+    }
+
+    if (!_containsUppercase(password)) {
+      return false;
+    }
+
+    if (!_containsLowercase(password)) {
+      return false;
+    }
+
+    if (!_containsDigit(password)) {
+      return false;
+    }
+
+    if (!_containsSpecialCharacter(password)) {
+      return false;
+    }
+
+    return true;
+  }
+
+  bool _containsUppercase(String value) {
+    return value.contains(RegExp('[A-Z]'));
+  }
+
+  bool _containsLowercase(String value) {
+    return value.contains(RegExp('[a-z]'));
+  }
+
+  bool _containsDigit(String value) {
+    return value.contains(RegExp('[0-9]'));
+  }
+
+  bool _containsSpecialCharacter(String value) {
+    return value.contains(RegExp(r'[!@#$%^&*(),.?":{}|<>]'));
   }
 }
