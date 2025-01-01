@@ -71,8 +71,6 @@ flutter:
   uses-material-design: true
 
   assets:
-    - assets/images/tribe_bg_1.jpg
-    - assets/images/tribe_bg_2.jpg
     - assets/animations/bg_animation.json
     - assets/animations/bg_animation2.json
     - assets/animations/google_icon.json
