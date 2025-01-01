@@ -1,7 +1,7 @@
-# Project Gauri
+# Project Tribe
 
 ## Overview
-Project Gauri is a cow and cattle wellness and wellfare app. This project is built using the Flutter framework and uses GetX for it's state management.
+This project is built using the Flutter framework and uses GetX for it's state management.
 
 ## Getting Started
 
@@ -14,8 +14,8 @@ Ensure you have the following installed:
 ### Installation
 1. Clone the repository:
    ```bash
-   git clone https://github.com/yourusername/project-gauri.git
-   cd project-gauri
+   git clone https://github.com/yourusername/tribe_app.git
+   cd tribe-app
 
 ## Pre Commit
 Pre commit allows us to handle issues before they are committed.
