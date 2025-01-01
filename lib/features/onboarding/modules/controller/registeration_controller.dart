@@ -7,7 +7,7 @@ import 'package:get/get.dart';
 // Project imports:
 import 'package:project_tribe/core/utils/utility.dart';
 import 'package:project_tribe/features/onboarding/modules/model/registeration_model.dart';
-import 'package:project_tribe/features/onboarding/modules/service/registration_service.dart';
+import 'package:project_tribe/features/onboarding/modules/service/onboarding_service.dart';
 
 class RegisterationController extends GetxController {
   final RxInt currentIndex = 0.obs;
@@ -21,7 +21,7 @@ class RegisterationController extends GetxController {
   final RxString selectedCountry = ''.obs;
   final RxString selectedCity = ''.obs;
   final RxString selectedState = ''.obs;
-  final RegistrationService registrationService = RegistrationService();
+  final OnboardingService registrationService = OnboardingService();
 
   void togglePasswordVisibility() {
     isPasswordVisible.value = !isPasswordVisible.value;

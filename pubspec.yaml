@@ -46,6 +46,7 @@ dependencies:
   shimmer: ^3.0.0
   toastification: ^2.3.0
   import_sorter: ^4.6.0
+  lottie: ^3.2.0
 
 dev_dependencies:
   flutter_test:
@@ -70,8 +71,10 @@ flutter:
   uses-material-design: true
 
   assets:
-    - assets/images/tribe_bg_1.jpg
-    - assets/images/tribe_bg_2.jpg
+    - assets/animations/bg_animation.json
+    - assets/animations/bg_animation2.json
+    - assets/animations/google_icon.json
+    - assets/animations/facebook_icon.json
 
 flutter_gen:
   output: lib/core/gen/assets
