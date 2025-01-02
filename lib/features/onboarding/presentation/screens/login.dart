@@ -78,11 +78,10 @@ class LoginScreen extends StatelessWidget {
                             ),
                             validator: (value) {
                               if (value == null || value.isEmpty) {
-                                return 'Email is required.';
+                                return 'Email or Username is required.';
                               }
-                              final emailRegex = RegExp(r'^[^@]+@[^@]+\.[^@]+');
-                              if (!emailRegex.hasMatch(value)) {
-                                return 'Invalid email address.';
+                              if (value.length < 8) {
+                                return 'Invalid Email or Username.';
                               }
                               return null;
                             },
@@ -197,8 +196,8 @@ class LoginScreen extends StatelessWidget {
                     ),
                     SizedBox(width: 70.w),
                     SizedBox(
-                      width: 70.w,
-                      height: 70.h,
+                      width: 60.w,
+                      height: 60.h,
                       child: Lottie.asset(
                         'assets/animations/facebook_icon.json',
                         fit: BoxFit.cover,
